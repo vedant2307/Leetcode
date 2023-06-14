@@ -5,7 +5,7 @@ public:
         while(idx1>=0 && nums[idx1]>=nums[idx1+1]) idx1--;
         if(idx1<0) reverse(nums.begin(),nums.end());
         else{
-            while(nums[idx2]<=nums[idx1]) idx2--;
+            while(idx2>0 && nums[idx2]<=nums[idx1]) idx2--;
             swap(nums[idx2],nums[idx1]);
             reverse(nums.begin()+idx1+1,nums.end());
         }
