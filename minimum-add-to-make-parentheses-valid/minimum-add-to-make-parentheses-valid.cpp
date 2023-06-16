@@ -2,14 +2,14 @@ class Solution {
 public:
     int minAddToMakeValid(string s) {
         int cnt=0;
-        stack<int>st;
+        int open=0;
         for(auto it:s){
             if(it==')'){
-                if(st.empty()) cnt++;
-                else st.pop();
+                if(open==0) cnt++;
+                else open--;
             }
-            else st.push(it);
+            else open++;
         }
-        return cnt+st.size();
+        return cnt+open;
     }
 };
