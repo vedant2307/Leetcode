@@ -2,23 +2,18 @@ class Solution {
 public:
     #define ll long long
     long long minCost(vector<int>& nums, vector<int>& cost) {
-        int n=nums.size();
-        ll tot=0,ans=0;
-        vector<pair<ll,ll>>temp;
-        for(int i=0;i<n;i++){
-            temp.push_back({nums[i],cost[i]});
-            tot+=(ll)cost[i];
-        }
-        sort(temp.begin(),temp.end());
-        ll mid=tot/2,x;
-        for(auto it:temp){
-            if(it.second<=mid) mid-=it.second;
-            else{
-                x=it.first; break;
+        ll left=1,right=1e6;
+        ll ans; int n=nums.size();
+        while(left<right){
+            ll mid=left+(right-left)/2;
+            ll cleft=0,cright=0;
+            for(int i=0;i<n;i++){
+                cleft+=(abs(nums[i]-mid)*((ll)cost[i]));
+                cright+=(abs(nums[i]-(mid+1))*((ll)cost[i]));
             }
-        }
-        for(auto it:temp){
-            ans+=(abs(it.first-x)*(it.second));
+            ans=min(cleft,cright);
+            if(cleft<cright) right=mid;
+            else left=mid+1;
         }
         return ans;
     }
