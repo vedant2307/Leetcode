@@ -10,15 +10,15 @@ public:
     // return helper(s,t,n-1,m-1);
     int numDistinct(string s, string t) {
         int n=s.length(),m=t.length();
-        vector<vector<ll>>dp(n+1,vector<ll>(m+1));
-
-        for(int i=0;i<=n;i++) dp[i][0]=1LL;
-
+        vector<ll>prev(m+1);
+        prev[0]=1LL;
     for(int idx1=1;idx1<=n;idx1++) {
+        vector<ll>curr(m+1); curr[0]=1LL;
         for(int idx2=1;idx2<=m;idx2++){
-            dp[idx1][idx2]=s[idx1-1]==t[idx2-1] ? dp[idx1-1][idx2-1]+dp[idx1-1][idx2]:dp[idx1-1][idx2];
+            curr[idx2] = s[idx1-1]==t[idx2-1] ? prev[idx2-1]+prev[idx2]:prev[idx2];
       }
+      prev=curr;
     }
-      return (int)dp[n][m];    
+      return (int)prev[m];    
     }
 };
