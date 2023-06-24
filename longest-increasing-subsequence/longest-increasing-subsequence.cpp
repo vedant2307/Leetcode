@@ -8,9 +8,16 @@ public:
         npick=helper(n,a,idx+1,prev,dp);
         return dp[idx][prev+1]=max(pick,npick);
     }
-    int lengthOfLIS(vector<int>& nums) {
-        int n=nums.size();
-        vector<vector<int>>dp(n,vector<int>(n+1,-1));
-       return helper(n,nums,0,-1,dp);
+    int lengthOfLIS(vector<int>& a) {
+        int n=a.size();
+        vector<int>nums;
+       for(int i=0;i<n;i++){
+           if(!nums.size() || a[i]>nums.back()) nums.push_back(a[i]);
+           else{
+               int idx=lower_bound(nums.begin(),nums.end(),a[i])-nums.begin();
+               nums[idx]=a[i];
+           }
+       }
+       return nums.size();
     }
 };
