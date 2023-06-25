@@ -10,14 +10,16 @@ public:
     }
     int lengthOfLIS(vector<int>& a) {
         int n=a.size();
-        vector<int>nums;
-       for(int i=0;i<n;i++){
-           if(!nums.size() || a[i]>nums.back()) nums.push_back(a[i]);
-           else{
-               int idx=lower_bound(nums.begin(),nums.end(),a[i])-nums.begin();
-               nums[idx]=a[i];
+      vector<int>pre(n+1,0);
+       for(int idx=n-1;idx>=0;idx--){
+           vector<int>curr(n+1,0);
+           for(int prev=idx-1;prev>=-1;prev--){
+               int len=pre[prev+1];
+               if(prev==-1 || a[idx]>a[prev]) len=max(len,pre[idx+1]+1);
+               curr[prev+1]=len;
            }
+           pre=curr;
        }
-       return nums.size();
+       return pre[0];
     }
 };
