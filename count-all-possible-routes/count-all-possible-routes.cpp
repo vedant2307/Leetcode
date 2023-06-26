@@ -13,9 +13,22 @@ public:
         }
         return dp[start][fuel]=ans;
     }
+    // return helper(locations,start,finish,fuel,n,dp);
     int countRoutes(vector<int>& locations, int start, int finish, int fuel) {
         int n=locations.size();
-        vector<vector<int>>dp(n,vector<int>(fuel+1,-1));
-        return helper(locations,start,finish,fuel,n,dp);
+        vector<vector<int>>dp(n,vector<int>(fuel+1,0));
+        for(int i=0;i<=fuel;i++) dp[finish][i]=1;
+        for(int f=0;f<=fuel;f++)
+        {
+            for(int idx=0;idx<n;idx++)
+            {
+                for(int k=0;k<n;k++){
+                    int temp=abs(locations[idx]-locations[k]);
+                    if(k==idx || temp>f) continue;
+                    dp[idx][f] = (dp[idx][f]+dp[k][f-temp])%mod;
+                }
+            }
+        }
+        return dp[start][fuel];
     }
 };
