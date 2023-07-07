@@ -2,17 +2,12 @@ class Solution {
 public:
     int helper(char ch, string s, int k, int n){
         int i=0,j=0,ans=0;
-        while(j<n){
-            while(j<n && k>=0){
-                if(s[j]==ch) k--;
-                j++;
+        for(;j<n;j++){
+            if(s[j]==ch) k--;
+            while(k<0){
+                if(s[i++]==ch) k++;
             }
-            if(k<0) ans=max(ans,j-i-1);
-            else ans=max(ans,j-i);
-            while(i<j && k<0){
-                if(s[i]==ch) k++;
-                i++;
-            }
+            ans=max(ans,j-i+1);
         }
         return ans;
     }
