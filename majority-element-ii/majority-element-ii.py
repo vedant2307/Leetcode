@@ -2,8 +2,8 @@ class Solution(object):
     def majorityElement(self, nums):
         cnt1=0 
         cnt2=0
-        a=-(1e9+1)
-        b=-(1e9+1)
+        a = float('-inf')
+        b = float('-inf')
         n=len(nums)
         for idx in nums:
             if(cnt1==0 and idx!=b): 
@@ -23,6 +23,6 @@ class Solution(object):
             if(idx==a): cnt1+=1
             elif(idx==b): cnt2+=1
         lst=[]
-        if(cnt1>n/3): lst.append(a)
-        if(cnt2>n/3): lst.append(b) 
+        if(cnt1>n//3): lst.append(a)
+        if(cnt2>n//3): lst.append(b) 
         return lst
