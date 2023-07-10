@@ -2,7 +2,7 @@ class Solution {
 public:
     bool helper(string a,string b,int rot,int n){
         for(int j=0;j<n;j++){
-            if(a[j]!=b[(rot+j)%n]) return false;
+            if(b[j]!=a[(rot+j)%n]) return false;
         }
         return true;
     }
