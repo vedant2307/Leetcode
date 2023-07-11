@@ -1,40 +1,26 @@
 class Solution {
 public:
-    int mod=1e9+7;
+    #define ll long long
+    #define mod 1000000007
     int sumSubarrayMins(vector<int>& arr) {
-        int n=arr.size();
-        vector<int>prev(n),next(n);
-        stack<int>st; 
-        next[n-1]=1; st.push(n-1);
-        for(int idx=n-2;idx>=0;idx--){
-            while(!st.empty() && arr[st.top()]>=arr[idx]) st.pop();
-            if(st.empty()){
-                next[idx]=n-idx;
+        stack<int>st;
+        st.push(-1);
+        int ans=0,n=arr.size();
+        for(int idx=0;idx<n;idx++){
+            while(st.size()>1 && arr[st.top()]>=arr[idx]){
+                int top=st.top(); st.pop();
+                ll left=top-st.top(),right=idx-top;
+                ll temp = (((arr[top]*left)%mod)*right)%mod;
+                ans = (ans+(int)temp)%mod;
             }
-            else next[idx]=st.top()-idx;
             st.push(idx);
         }
-
-        while(!st.empty()) st.pop();
-
-        prev[0]=1; st.push(0);
-        for(int idx=1;idx<n;idx++){
-            while(!st.empty() && arr[st.top()]>arr[idx]) st.pop();
-            if(st.empty()){
-                prev[idx]=idx+1;
-            }
-            else prev[idx]=idx-st.top();
-            st.push(idx);
+        while(st.size()>1){
+            int top=st.top(); st.pop();
+            ll left=top-st.top(),right=n-top;
+            ll temp = (((arr[top]*left)%mod)*right)%mod;
+            ans = (ans+(int)temp)%mod;
         }
-
-        int ans=0;
-        for(int i=0;i<n;i++){
-            int cnt1=prev[i],cnt2=next[i];
-            long long temp=(cnt1*cnt2)%mod;
-            temp=(temp*arr[i])%mod;
-            ans= (ans+temp)%mod;
-        }
-
         return ans;
     }
 };
