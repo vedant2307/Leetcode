@@ -10,7 +10,7 @@ class LRUCache {
     };
     ListNode *head=new ListNode(-1,-1);
     ListNode *tail=new ListNode(-1,-1);
-    map<int,ListNode*>mp;
+    unordered_map<int,ListNode*>mp;
     int maxi;
 
     void addNode(ListNode* node){
