@@ -7,16 +7,24 @@ public:
             if(k==0) return 1;
             return 0;
         }
-        if(dp[idx][k][maxi+1]!=-1) return dp[idx][k][maxi+1];
+        if(dp[idx][k][maxi]!=-1) return dp[idx][k][maxi];
         int ans=0;
         for(int i=1;i<=m;i++){
             if(i>maxi) ans=(ans+helper(idx+1,n,m,k-1,i,dp))%mod;
             else ans=(ans+helper(idx+1,n,m,k,maxi,dp))%mod; 
         }
-        return dp[idx][k][maxi+1]=ans%mod;
+        return dp[idx][k][maxi]=ans%mod;
     }
     int numOfArrays(int n, int m, int k) {
-        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(k+1,vector<int>(102,-1)));
-        return helper(0,n,m,k,-1,dp);
+        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(k+1,vector<int>(m+1,-1)));
+        return helper(0,n,m,k,0,dp);
     }
 };
+
+
+
+
+
+
+
+
