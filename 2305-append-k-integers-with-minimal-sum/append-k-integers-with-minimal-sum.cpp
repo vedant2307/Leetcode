@@ -7,12 +7,11 @@ public:
 
     long long minimalKSum(vector<int>& nums, int k) {
         long long sum=0LL;
-        unordered_set<int>st;
-        for(auto it:nums) st.insert(it);
+        sort(nums.begin(),nums.end());
         vector<int>temp;
-        for(auto it:st) temp.push_back(it); 
-        sort(temp.begin(),temp.end());
-
+        for(auto it:nums){
+            if(temp.empty() || temp.back()!=it) temp.push_back(it);
+        }
         int low=0,high=temp.size()-1;
         while(low<=high){
             int mid=low+(high-low)/2;
@@ -35,4 +34,3 @@ public:
         return sum;
     }
 };
-
