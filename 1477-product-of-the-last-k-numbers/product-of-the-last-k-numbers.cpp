@@ -1,9 +1,8 @@
 class ProductOfNumbers {
 public:
-    vector<int>temp,ans;
+    vector<int>temp;
     int len;
     ProductOfNumbers() {
-        ans.resize(1e5);
         len=0;
     }
     
