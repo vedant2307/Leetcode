@@ -3,22 +3,23 @@ public:
     vector<int>temp;
     int len;
     ProductOfNumbers() {
-        len=0;
+        temp.push_back(1);
+        len=1;
     }
     
     void add(int num) {
-        temp.push_back(num);
-        len++;
-        return;
+        if(num){
+            temp.push_back(temp.back()*num);
+            len++;
+        }
+        else {
+            temp = {1}; len=1;
+        }
     }
     
     int getProduct(int k) {
-        int mul=1;
-        for(int idx=0;idx<k;idx++){
-            int i=len-1-(idx);
-            mul = mul * temp[i];
-        }
-        return mul;
+        int idx = len-1-k;
+        return k<len ? temp.back()/temp[idx] : 0;
     }
 };
 
