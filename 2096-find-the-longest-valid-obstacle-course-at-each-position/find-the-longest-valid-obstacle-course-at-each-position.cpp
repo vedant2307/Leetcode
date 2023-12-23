@@ -4,7 +4,7 @@ public:
         vector<int>ans,temp;
         int size=0;
         for(auto it:obstacles){
-            if(temp.size()==0 || temp.back()<=it){
+            if(size==0 || temp[size-1]<=it){
                 temp.push_back(it);
                 size++;
                 ans.push_back(size);
