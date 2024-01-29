@@ -3,17 +3,7 @@ class Solution {
 public:
 
     long long ans ;
-    void helper(vector<int1>&left, vector<int1>&right, int1 left_size,int1 right_size){
-        int i=0,j=0;
-        while(i<left_size && j<right_size){
-            if(left[i]<=right[j]) i++;
-            else{
-                ans+= (left_size-i);
-                j++;
-            }
-        }
-        return;
-    }
+
     void MergeSort(vector<int>&arr, int1 low, int1 mid, int1 high){
         int1 left_size = mid-low+1, right_size=high-mid;
         vector<int1>left(left_size);
@@ -23,14 +13,26 @@ public:
         for(int k=0;k<right_size;k++) right[k] = arr[k+mid+1];
         
         int1 i=0,j=0,k=low;
-        vector<int1>temp(right_size);
-        for(int k=0;k<right_size;k++) temp[k]=right[k]*2;
 
-        helper(left,temp,left_size,right_size);
-        
+        while(i<left_size && j<right_size){
+            if(left[i]<=2*right[j]) i++;
+            else{
+                int1 num=2*right[j];
+                int1 idx=upper_bound(left.begin(),left.end(),num)-left.begin();
+                ans += (left_size-idx);
+                j++;
+            }
+        }
+
+        i=0; j=0;
+
         while(i<left_size &&  j<right_size){
-            if(left[i]<right[j]) arr[k++] = left[i++];
-            else arr[k++] = right[j++];
+            if(left[i]<right[j]) {
+                arr[k++] = left[i++];
+            }
+            else {
+                arr[k++] = right[j++];
+            }
         }
         while(i<left_size) arr[k++] = left[i++];
         while(j<right_size) arr[k++] = right[j++];
