@@ -18,7 +18,7 @@ public:
             }
         }
         while(i<left_size) nums[k++] = left[i++];
-        while(j<right_size) nums[k++] = right[j++];
+        //while(j<right_size) nums[k++] = right[j++];
         return;
     }
 
