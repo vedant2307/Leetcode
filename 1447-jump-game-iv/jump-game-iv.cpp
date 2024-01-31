@@ -2,7 +2,7 @@ class Solution {
 public:
     int minJumps(vector<int>& arr) {
         int n=arr.size();
-        map<int,set<int>>mp; queue<pair<int,int>>q; vector<bool>vis(n);
+        unordered_map<int,set<int>>mp; queue<pair<int,int>>q; vector<bool>vis(n);
         for(int i=0;i<n;i++) mp[arr[i]].insert(i);
         vis[0]=1;
         q.push({0,0});
