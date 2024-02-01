@@ -24,7 +24,7 @@ class LRUCache {
         ListNode* dPrev=node->prev;
         ListNode* dNext=node->next;
         dPrev->next=dNext; dNext->prev=dPrev;
-        node->next=NULL; node->prev=NULL;
+        //node->next=NULL; node->prev=NULL;
     }
 
 public:
