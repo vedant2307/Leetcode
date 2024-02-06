@@ -18,12 +18,15 @@ public:
             else{
                 TreeNode* prev=curr->left;
                 while(prev->right && prev->right!=curr) prev=prev->right;
-                if(!prev->right) prev->right=curr;
+                if(!prev->right) {
+                    prev->right=curr;
+                    curr=curr->left;
+                }
                 else{
                     prev->right=curr->right;
                     curr->right=curr->left;
                     curr->left=NULL;
-                    curr=curr->right;
+                    curr=prev->right;
                 }
             }
         }
