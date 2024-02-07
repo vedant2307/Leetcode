@@ -11,15 +11,13 @@
  */
 class Solution {
 public:
-    bool helper(TreeNode* root, long long mini, long long maxi){
-        if(!root) return true;
-        if(maxi>root->val && mini<root->val){
-            return helper(root->left,mini,root->val) && helper(root->right,root->val,maxi); 
-        }
-        return false;
-    }
+    long long prev=LONG_MIN,curr;
     bool isValidBST(TreeNode* root) {
-
-        return helper(root,-1e10,1e10);
+        if(!root) return true;
+        bool left=isValidBST(root->left);
+        if(prev>=root->val) return false;
+        prev=root->val;
+        bool right=isValidBST(root->right);
+        return left && right;
     }
 };
