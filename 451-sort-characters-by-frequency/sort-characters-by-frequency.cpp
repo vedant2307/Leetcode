@@ -13,7 +13,8 @@ public:
         for(int idx=n;idx>=1;idx--){
             for(auto it:bucket[idx]){
                 int cnt=idx;
-                while(cnt--) ans.push_back(it+'a');
+                string temp(cnt,it+'a');
+                ans+=temp;
             }
         }
         return ans;
