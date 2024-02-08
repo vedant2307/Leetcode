@@ -8,11 +8,11 @@ public:
             while(k<0){
                 if(--mp[nums[j++]]==0) k++;
             }
-            ans+=(j-i+1);
+            ans+=(i-j+1);
         }
         return ans;
     }
     int subarraysWithKDistinct(vector<int>& nums, int k) {
-        return helper(nums,k-1)-helper(nums,k);
+        return helper(nums,k)-helper(nums,k-1);
     }
 };
