@@ -1,10 +1,7 @@
 class Solution {
 public:
     int helper(vector<vector<int>>& grid, int row, int col1, int col2, int n, int m,vector<vector<vector<int>>>&dp){
-        if(row==n-1){
-            if(col1==col2) return grid[row][col1];
-            return grid[row][col1]+grid[row][col2];
-        }
+        if(row==n) return 0;
         if(dp[row][col1][col2]!=-1) return dp[row][col1][col2]; 
         int ans=0;
         for(int i=-1;i<=1;i++){
