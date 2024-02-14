@@ -12,7 +12,7 @@ public:
         else{
             while(j>=i && nums[j]<=nums[i-1]) j--;
             swap(nums[i-1],nums[j]);
-            Reverse(i,n-1,nums);
+            reverse(nums.begin()+i,nums.end());
         }
         return ;
     }
