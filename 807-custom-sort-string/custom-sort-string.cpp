@@ -11,8 +11,8 @@ public:
         }
         for(auto it:mp1){
             char ch=order[it.first]; 
-            int freq=it.second;
-            while(freq--) ans+=ch;
+            string temp(it.second,ch); 
+            ans+=temp;
         }
         return ans;
     }
